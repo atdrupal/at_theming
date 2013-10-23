@@ -1,0 +1,7 @@
+name = AT Theming
+version = 7.x-1.0-dev
+description = Theming tools
+core = 7.x
+
+dependencies[] = go
+dependencies[] = at_autoload
