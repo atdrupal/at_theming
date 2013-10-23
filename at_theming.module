@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * Implements hook_go_api()
+ */
+function at_theming_go_api() {
+  return array('api' => '1.0');
+}

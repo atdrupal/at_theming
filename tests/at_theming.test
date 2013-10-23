@@ -1,0 +1,23 @@
+<?php
+
+class At_Theming_TestCase extends DrupalUnitTestCase {
+  public function getInfo() {
+    return array(
+      'name' => 'AT Theming',
+      'description' => 'Make sure at_theming module is working correctly.',
+      'group' => 'Andy Truong',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('atest_theming');
+  }
+
+  public function testViewRender() {
+    $template_file = drupal_get_path('module', 'atest_theming') . '/templates/users.tpl.php';
+    $view_name = 'atest_theming_user';
+    $display_id = 'default_id';
+    $output = go_id(new \Drupal\at_theming\ViewRender($template_file, $view_name, $display_id))->render();
+    $this->assertTrue(preg_match('//', 'UID: \d+', $output));
+  }
+}

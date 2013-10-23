@@ -1,4 +1,6 @@
 at_theming
 ==========
 
-My own tools for Drupal Theming
+Provide some helper method for theming.
+
+Check the tests for more details.

@@ -8,7 +8,8 @@ namespace Drupal\at_theming;
  *   $template_file = '/path/to/my/template.php';
  *   $view_name = 'my_view';
  *   $display_id = 'default_id';
- *   go_id(new \Drupal\at_theming\ViewRender())->render($template_file, $view_name, $display_id, $arg_1, $arg_2);
+ *   go_id(new \Drupal\at_theming\ViewRender($template_file, $view_name, $display_id, $arg_1, $arg_2))
+ *         ->render();
  * ````
  */
 class ViewRender {
@@ -31,10 +32,10 @@ class ViewRender {
     $this->view_args = $args;
   }
 
-  public static function render() {
+  public function render() {
     return theme_render_template(
-      $this->template_file, 
-      array('items' => uq_andy_get_view_result($this->view_name, $this->display_id, $this->view_args))
+      $this->template_file,
+      array('items' => $this->getViewResult($this->view_name, $this->display_id, $this->view_args))
     );
   }
 
@@ -52,9 +53,11 @@ class ViewRender {
         $view->set_display($this->display_id);
 
         // Custom: Render clean output!
-        foreach (array_keys($view->display[$this->display_id]->display_options['fields']) as $k) {
-          $view->display[$this->display_id]->display_options['fields'][$k]['element_default_classes'] = 0;
-          $view->display[$this->display_id]->display_options['fields'][$k]['element_type'] = 0;
+        if (!empty($view->display[$this->display_id]->display_options['fields'])) {
+          foreach (array_keys($view->display[$this->display_id]->display_options['fields']) as $k) {
+            $view->display[$this->display_id]->display_options['fields'][$k]['element_default_classes'] = 0;
+            $view->display[$this->display_id]->display_options['fields'][$k]['element_type'] = 0;
+          }
         }
       }
       else {
