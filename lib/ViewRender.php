@@ -41,7 +41,7 @@ class ViewRender {
   /**
    * Modified version of views_get_view_result().
    */
-  private getViewResult() {
+  private function getViewResult() {
     $view = views_get_view($this->view_name);
     if (is_object($view)) {
       if (is_array($this->view_args)) {
