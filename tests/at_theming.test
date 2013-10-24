@@ -18,6 +18,12 @@ class At_Theming_TestCase extends DrupalUnitTestCase {
     $view_name = 'atest_theming_user';
     $display_id = 'default_id';
     $output = go_id(new \Drupal\at_theming\ViewRender($template_file, $view_name, $display_id))->render();
-    $this->assertTrue(preg_match('//', 'UID: \d+', $output));
+    $this->assertTrue(preg_match('/UID: \d+/', $output));
+  }
+
+  public function testTwigRender() {
+    $template_file = drupal_get_path('module', 'atest_theming') . '/templates/hello.twig';
+    $output = at_theming_render_template($template_file, array('name' => 'Andy Truong'));
+    $this->assertTrue(strpos($output, 'Hello Andy Truong'));
   }
 }
