@@ -1,13 +1,6 @@
 <?php
 
 /**
- * Implements hook_go_api()
- */
-function at_theming_go_api() {
-  return array('api' => '1.0');
-}
-
-/**
  * Wrapper function to support both phptemplate & twig template
  */
 function at_theming_render_template($template_file, $variables) {

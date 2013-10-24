@@ -8,7 +8,7 @@ namespace Drupal\at_theming;
  *   $template_file = '/path/to/my/template.php';
  *   $view_name = 'my_view';
  *   $display_id = 'default_id';
- *   go_id(new \Drupal\at_theming\ViewRender($template_file, $view_name, $display_id, $arg_1, $arg_2))
+ *   at_id(new \Drupal\at_theming\ViewRender($template_file, $view_name, $display_id, $arg_1, $arg_2))
  *         ->render();
  * ````
  */
