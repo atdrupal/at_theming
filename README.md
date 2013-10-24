@@ -8,4 +8,5 @@ Check the tests for more details.
 Planned features
 ==========
 
-* Support render twig templates
+* Support render Twig templates
+* Support Drupal-filter for Twig: url, l, auto_p, hide, format_date, filter_xss, …
