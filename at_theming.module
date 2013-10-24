@@ -23,9 +23,9 @@ function at_theming_detect_template_type($file_name) {
   $path_info = pathinfo($file_name);
 
   switch ($path_info['extension']) {
-    default 'php':
+    case 'php':
       return 'phptemplate';
   }
-  
+
   return 'twig';
 }
