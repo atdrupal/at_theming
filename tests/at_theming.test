@@ -24,6 +24,6 @@ class At_Theming_TestCase extends DrupalUnitTestCase {
   public function testTwigRender() {
     $template_file = drupal_get_path('module', 'atest_theming') . '/templates/hello.twig';
     $output = at_theming_render_template($template_file, array('name' => 'Andy Truong'));
-    $this->assertTrue(strpos($output, 'Hello Andy Truong'));
+    $this->assertTrue(strpos($output, 'Hello Andy Truong') !== FALSE);
   }
 }
