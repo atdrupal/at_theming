@@ -6,3 +6,26 @@
 function at_theming_go_api() {
   return array('api' => '1.0');
 }
+
+/**
+ * Wrapper function to support both phptemplate & twig template
+ */
+function at_theming_render_template($template_file, $variables) {
+  $template_type = at_theming_detect_template_type($template_file);
+  $callback = $template_type ? 'theme_render_template' : '\Drupal\at_theming\Twig::render';
+  return $callback($template_file, $variables);
+}
+
+/**
+ * Detect template type by file name.
+ */
+function at_theming_detect_template_type($file_name) {
+  $path_info = pathinfo($file_name);
+
+  switch ($path_info['extension']) {
+    default 'php':
+      return 'phptemplate';
+  }
+  
+  return 'twig';
+}
