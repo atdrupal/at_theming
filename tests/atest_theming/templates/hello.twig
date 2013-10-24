@@ -21,3 +21,17 @@ Hello {{ name }}!
 <h2>Page</h2>
 
 {{ 'node/1/view' | page }}
+
+<h2>Test</h2>
+
+<h3>has_permission</h3>
+
+{% if user is has_permission('access content') %}
+    ...
+{% endif %}
+
+<h3>has_role</h3>
+
+{% if user is has_role('premium account') %}
+    ...
+{% endif %}
