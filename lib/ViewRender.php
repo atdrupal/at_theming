@@ -33,7 +33,7 @@ class ViewRender {
   }
 
   public function render() {
-    return theme_render_template(
+    return at_theming_render_template(
       $this->template_file,
       array('items' => $this->getViewResult($this->view_name, $this->display_id, $this->view_args))
     );
