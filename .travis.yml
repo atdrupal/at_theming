@@ -18,7 +18,7 @@ before_script:
  - cd drupal-*
  - pwd
  - ls -lah ../
- - mv ../andytruong/at_autoload sites/all/modules/
+ - mv ../andytruong/at_theming sites/all/modules/
  - echo '#####################'
  - echo 'Clone modules-dependencies'
  - echo '#####################'
@@ -29,6 +29,7 @@ before_script:
  - echo '#####################'
  - echo 'Clone required libraries'
  - echo '#####################'
+ - mkdir -p sites/all/libraries
  - cd sites/all/libraries
  - composer require twig/twig:1.*
  - mv vendor/twig/twig ./
@@ -47,4 +48,4 @@ before_script:
  - drush cc all
  - sleep 3
 
-script: drush test-run 'AT Autoloader'
+script: drush test-run 'AT Theming'
