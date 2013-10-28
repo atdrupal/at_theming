@@ -43,7 +43,6 @@ before_script:
  - echo '#####################'
  - echo 'Setup caching directory for Twig'
  - echo '#####################'
- - mkdir -p sites/default/private/tmp
  - drush vset --yes file_temporary_path /tmp
  - drush cc all
  - sleep 3
