@@ -39,7 +39,8 @@ before_script:
  - echo 'Install Drupal - Enable modules'
  - echo '#####################'
  - drush si testing --db-url=mysql://root:@localhost/drupal --yes
- - drush en --yes simpletest at_theming
+ - echo 'atest_theming depends on features and views and… this command to auto download them all'
+ - drush en --yes simpletest at_theming atest_theming
  - echo '#####################'
  - echo 'Setup caching directory for Twig'
  - echo '#####################'
