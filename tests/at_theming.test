@@ -32,7 +32,7 @@ class At_Theming_TestCase extends DrupalWebTestCase {
     $this->assertTrue(strpos($output, '>1</a>') !== FALSE);
 
     // with drupalBlock filter
-    $template_file = '@atest_theming/twig/views/block.html.twig';
+    $template_file = '@atest_theming/twig/block.html.twig';
     $output = at_theming_render_template($template_file);
     $this->assertTrue(strpos($output, 'Powered by') !== FALSE);
   }
