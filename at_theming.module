@@ -3,10 +3,12 @@
 /**
  * Wrapper function to support both phptemplate & twig template
  */
-function at_theming_render_template($template_file, $variables) {
+function at_theming_render_template($template_file, $variables = array()) {
   $template_type = at_theming_detect_template_type($template_file);
-  $callback = $template_type ? 'theme_render_template' : '\Drupal\at_theming\Twig::render';
-  return $callback($template_file, $variables);
+  if ('phptemplate' === $template_type) {
+    return theme_render_template($template_file, $variables);
+  }
+  return \Drupal\at_theming\Twig::render($template_file, $variables);
 }
 
 /**

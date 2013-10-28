@@ -5,6 +5,12 @@ Provide some helper method for theming.
 
 Check the tests for more details.
 
+Install
+==========
+
+Download Twig library to /sites/all/libraries/twig — where we can find
+/sites/all/libraries/twig/lib/Twig/Autoloader.php
+
 Planned features
 ==========
 
