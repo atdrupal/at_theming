@@ -21,13 +21,25 @@ class At_Theming_TestCase extends DrupalWebTestCase {
     $class = 'Drupal\at_theming\ViewRender';
     $file1 = _at_autoload_get_file($class);
     $file2 = _at_autoload_get_file_static($class);
+    $cached_at_modules = at_modules();
+    $no_cached_at_modules[] = $base_module = 'at_base';
+    foreach (system_list('module_enabled') as $name => $project) {
+      if (isset($project->info['dependencies'])) {
+        if (in_array($base_module, $project->info['dependencies'])) {
+          $no_cached_at_modules[] = $name;
+        }
+      }
+    }
 
     print_r(array(
       'DEBUG',
       'apc' => function_exists('apc_clear_cache'),
       'class' => $class,
-      $file1, $file2,
-      at_modules(),
+      '_at_autoload_get_file' => $file1,
+      '_at_autoload_get_file_static' => $file2,
+      $cached_at_modules,
+      $no_cached_at_modules,
+      system_list('module_enabled'),
       cache_get('at_base:modules:at_base', 'cache_bootstrap')
     ));
 
