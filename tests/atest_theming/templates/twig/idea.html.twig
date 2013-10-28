@@ -1,0 +1,33 @@
+<h2>Views:</h2>
+
+{{ atest_theming_user | view }}
+
+<strong>With specific display ID & arguments:</strong>
+
+{{ atest_theming_user | view('block_1', nid) }}
+
+<strong>With specific template</strong>
+
+{{ atest_theming_user | view('block_1', nid, template_file = '%atest_theming%/templates/users.tpl.php') }}
+
+<h2>Block</h2>
+
+{{ user_online | block }}
+
+<h2>Page</h2>
+
+{{ 'node/1/view' | page }}
+
+<h2>Test</h2>
+
+<h3>has_permission</h3>
+
+{% if user is has_permission('access content') %}
+    ...
+{% endif %}
+
+<h3>has_role</h3>
+
+{% if user is has_role('premium account') %}
+    ...
+{% endif %}
