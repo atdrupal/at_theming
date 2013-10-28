@@ -5,7 +5,7 @@ class At_Theming_TestCase extends DrupalUnitTestCase {
     return array(
       'name' => 'AT Theming',
       'description' => 'Make sure at_theming module is working correctly.',
-      'group' => 'Andy Truong',
+      'group' => 'AT Theming',
     );
   }
 

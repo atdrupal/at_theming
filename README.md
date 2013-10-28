@@ -1,6 +1,8 @@
 at_theming
 ==========
 
+[![Build Status](https://secure.travis-ci.org/andytruong/at_theming.png?branch=7.x-1.x)](http://travis-ci.org/andytruong/at_theming)
+
 Provide some helper method for theming.
 
 Check the tests for more details.
