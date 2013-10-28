@@ -1,0 +1,50 @@
+language: php
+php:
+  - 5.3
+  - 5.4
+
+mysql:
+  database: drupal
+  username: root
+  encoding: utf8
+
+before_script:
+ - cd ../..
+ - mysql -e 'create database drupal;'
+ - pear channel-discover pear.drush.org
+ - pear install drush/drush-5.8.0
+ - phpenv rehash
+ - drush dl --yes drupal
+ - cd drupal-*
+ - pwd
+ - ls -lah ../
+ - mv ../andytruong/at_autoload sites/all/modules/
+ - echo '#####################'
+ - echo 'Clone modules-dependencies'
+ - echo '#####################'
+ - cd sites/all/modules
+ - git clone https://github.com/andytruong/at_base.git --branch=7.x-1.x
+ - git clone https://github.com/andytruong/at_autoload.git --branch=7.x-1.x
+ - cd ../../..
+ - echo '#####################'
+ - echo 'Clone required libraries'
+ - echo '#####################'
+ - cd sites/all/libraries
+ - composer require twig/twig:1.*
+ - mv vendor/twig/twig ./
+ - rm -rf ./vendor composer.*
+ - cd ../../..
+ - echo '#####################'
+ - echo 'Install Drupal - Enable modules'
+ - echo '#####################'
+ - drush si testing --db-url=mysql://root:@localhost/drupal --yes
+ - drush en --yes simpletest at_theming
+ - echo '#####################'
+ - echo 'Setup caching directory for Twig'
+ - echo '#####################'
+ - mkdir -p sites/default/private/tmp
+ - drush vset --yes file_temporary_path /tmp
+ - drush cc all
+ - sleep 3
+
+script: drush test-run 'AT Autoloader'

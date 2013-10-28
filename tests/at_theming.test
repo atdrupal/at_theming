@@ -13,7 +13,7 @@ class At_Theming_TestCase extends DrupalUnitTestCase {
     parent::setUp('atest_theming');
   }
 
-  public function testViewRender() {
+  public function testViewRenderClass() {
     $template_file = drupal_get_path('module', 'atest_theming') . '/templates/users.tpl.php';
     $view_name = 'atest_theming_user';
     $display_id = 'default';
@@ -25,5 +25,10 @@ class At_Theming_TestCase extends DrupalUnitTestCase {
     $template_file = drupal_get_path('module', 'atest_theming') . '/templates/hello.twig';
     $output = at_theming_render_template($template_file, array('name' => 'Andy Truong'));
     $this->assertTrue(strpos($output, 'Hello Andy Truong') !== FALSE);
+
+    // with drupalView filter
+    $template_file = '@atest_theming/twig/views/simple.html.twig';
+    $output = at_theming_render_template($template_file);
+    $this->assertTrue(strpos($output, '>1</a>') !== FALSE);
   }
 }
