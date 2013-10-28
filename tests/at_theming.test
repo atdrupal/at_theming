@@ -15,7 +15,7 @@ class At_Theming_TestCase extends DrupalWebTestCase {
 
   public function testViewRenderClass() {
     print_r(array(
-      '___DEBUG___'
+      '___DEBUG___',
       'atest_theming' => module_enabled('atest_theming'),
       'atest_theming' => module_enabled('at_theming'),
     ));
@@ -24,7 +24,7 @@ class At_Theming_TestCase extends DrupalWebTestCase {
     module_enable(array('atest_theming', 'at_theming'));
 
     print_r(array(
-      '___DEBUG___'
+      '___DEBUG___',
       'atest_theming' => module_enabled('atest_theming'),
       'atest_theming' => module_enabled('at_theming'),
     ));
