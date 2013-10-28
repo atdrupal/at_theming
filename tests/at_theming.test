@@ -14,34 +14,24 @@ class At_Theming_TestCase extends DrupalWebTestCase {
   }
 
   public function testViewRenderClass() {
+    print_r(array(
+      '___DEBUG___'
+      'atest_theming' => module_enabled('atest_theming'),
+      'atest_theming' => module_enabled('at_theming'),
+    ));
+
+    // Not sure why test modules are not enabled on setUp
+    module_enable(array('atest_theming', 'at_theming'));
+
+    print_r(array(
+      '___DEBUG___'
+      'atest_theming' => module_enabled('atest_theming'),
+      'atest_theming' => module_enabled('at_theming'),
+    ));
+
     $template_file = drupal_get_path('module', 'atest_theming') . '/templates/users.tpl.php';
     $view_name = 'atest_theming_user';
     $display_id = 'default';
-
-    $class = 'Drupal\at_theming\ViewRender';
-    $file1 = _at_autoload_get_file($class);
-    $file2 = _at_autoload_get_file_static($class);
-    $cached_at_modules = at_modules();
-    $no_cached_at_modules[] = $base_module = 'at_base';
-    foreach (system_list('module_enabled') as $name => $project) {
-      if (isset($project->info['dependencies'])) {
-        if (in_array($base_module, $project->info['dependencies'])) {
-          $no_cached_at_modules[] = $name;
-        }
-      }
-    }
-
-    print_r(array(
-      'DEBUG',
-      'apc' => function_exists('apc_clear_cache'),
-      'class' => $class,
-      '_at_autoload_get_file' => $file1,
-      '_at_autoload_get_file_static' => $file2,
-      $cached_at_modules,
-      $no_cached_at_modules,
-      system_list('module_enabled'),
-      cache_get('at_base:modules:at_base', 'cache_bootstrap')
-    ));
 
     $output = at_id(new \Drupal\at_theming\ViewRender($template_file, $view_name, $display_id))->render();
     $this->assertTrue(preg_match('/UID: \d+/', $output));
