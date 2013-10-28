@@ -16,8 +16,8 @@ class At_Theming_TestCase extends DrupalWebTestCase {
   public function testViewRenderClass() {
     print_r(array(
       '___DEBUG___',
-      'atest_theming' => module_enabled('atest_theming'),
-      'atest_theming' => module_enabled('at_theming'),
+      'atest_theming' => module_exists('atest_theming'),
+      'atest_theming' => module_exists('at_theming'),
     ));
 
     // Not sure why test modules are not enabled on setUp
@@ -25,8 +25,8 @@ class At_Theming_TestCase extends DrupalWebTestCase {
 
     print_r(array(
       '___DEBUG___',
-      'atest_theming' => module_enabled('atest_theming'),
-      'atest_theming' => module_enabled('at_theming'),
+      'atest_theming' => module_exists('atest_theming'),
+      'atest_theming' => module_exists('at_theming'),
     ));
 
     $template_file = drupal_get_path('module', 'atest_theming') . '/templates/users.tpl.php';
