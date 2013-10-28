@@ -1,6 +1,6 @@
 <?php
 
-class At_Theming_TestCase extends DrupalUnitTestCase {
+class At_Theming_TestCase extends DrupalWebTestCase {
   public function getInfo() {
     return array(
       'name' => 'AT Theming',
