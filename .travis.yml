@@ -49,6 +49,7 @@ before_script:
  - echo '#####################'
  - echo 'Debugging'
  - echo '#####################'
+ - drush test-run 'AT Base'
  - drush test-run 'AT Autoloader'
  - drush pml | grep at | grep Enabled
  - drush php-eval 'print_r(array(at_modules()));'

@@ -17,6 +17,13 @@ class At_Theming_TestCase extends DrupalWebTestCase {
     $template_file = drupal_get_path('module', 'atest_theming') . '/templates/users.tpl.php';
     $view_name = 'atest_theming_user';
     $display_id = 'default';
+
+    print_r(array(
+      'DEBUG',
+      $f = _at_autoload_get_file('\Drupal\at_theming\ViewRender'),
+      file_get_contents($f)
+    ));
+
     $output = at_id(new \Drupal\at_theming\ViewRender($template_file, $view_name, $display_id))->render();
     $this->assertTrue(preg_match('/UID: \d+/', $output));
   }
