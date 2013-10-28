@@ -46,5 +46,11 @@ before_script:
  - drush vset --yes file_temporary_path /tmp
  - drush cc all
  - sleep 3
+ - echo '#####################'
+ - echo 'Debugging'
+ - echo '#####################'
+ - drush test-run 'AT Autoloader'
+ - drush pml | grep at | grep Enabled
+ - drush ev 'print_r(at_modules());'
 
 script: drush test-run 'AT Theming'
