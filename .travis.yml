@@ -51,6 +51,6 @@ before_script:
  - echo '#####################'
  - drush test-run 'AT Autoloader'
  - drush pml | grep at | grep Enabled
- - drush ev 'print_r(at_modules());'
+ - drush php-eval 'print_r(array(at_modules()));'
 
 script: drush test-run 'AT Theming'
