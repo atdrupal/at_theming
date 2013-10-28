@@ -22,7 +22,9 @@ class Twig {
       $twig = new \Twig_Environment($loader, self::getOptions());
 
       // Add Drupal filters
-      $twig->addFilter(new \Twig_SimpleFilter('drupalView', array('\Drupal\at_theming\Filters\Simple', 'view')));
+      if (module_exists('views')) {
+        $twig->addFilter(new \Twig_SimpleFilter('drupalView', 'views_embed_view'));
+      }
     }
 
     return $twig;
