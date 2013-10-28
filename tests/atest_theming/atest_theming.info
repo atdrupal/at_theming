@@ -6,3 +6,5 @@ dependencies[] = views
 dependencies[] = features
 dependencies[] = node
 dependencies[] = at_theming
+dependencies[] = at_base
+dependencies[] = at_autoload
