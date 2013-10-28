@@ -46,12 +46,5 @@ before_script:
  - drush vset --yes file_temporary_path /tmp
  - drush cc all
  - sleep 3
- - echo '#####################'
- - echo 'Debugging'
- - echo '#####################'
- - drush test-run 'AT Base'
- - drush test-run 'AT Autoloader'
- - drush pml | grep at | grep Enabled
- - drush php-eval 'print_r(array(at_modules()));'
 
 script: drush test-run 'AT Theming'

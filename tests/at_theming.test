@@ -18,10 +18,17 @@ class At_Theming_TestCase extends DrupalWebTestCase {
     $view_name = 'atest_theming_user';
     $display_id = 'default';
 
+    $class = 'Drupal\at_theming\ViewRender';
+    $file1 = _at_autoload_get_file($class);
+    $file2 = _at_autoload_get_file_static($class);
+
     print_r(array(
       'DEBUG',
-      $f = _at_autoload_get_file('\Drupal\at_theming\ViewRender'),
-      file_get_contents($f)
+      'apc' => function_exists('apc_clear_cache'),
+      'class' => $class,
+      $file1, $file2,
+      at_modules(),
+      cache_get('at_base:modules:at_base', 'cache_bootstrap')
     ));
 
     $output = at_id(new \Drupal\at_theming\ViewRender($template_file, $view_name, $display_id))->render();
