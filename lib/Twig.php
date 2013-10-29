@@ -20,15 +20,22 @@ class Twig {
       }
 
       $twig = new \Twig_Environment($loader, self::getOptions());
-
-      // Add Drupal filters
-      $twig->addFilter(new \Twig_SimpleFilter('drupalBlock', array('\Drupal\at_theming\Twig\Filters\Block', 'render')));
-      if (module_exists('views')) {
-        $twig->addFilter(new \Twig_SimpleFilter('drupalView', 'views_embed_view'));
+      foreach (self::getFilters() as $filter) {
+        $twig->addFilter($filter);
       }
     }
 
     return $twig;
+  }
+
+  protected static function getFilters() {
+    $filters[] = new \Twig_SimpleFilter('drupalBlock', array('\Drupal\at_theming\Twig\Filters\Block', 'render'));
+
+    if (module_exists('views')) {
+      $filters[] = new \Twig_SimpleFilter('drupalView', 'views_embed_view');
+    }
+
+    return $filters;
   }
 
   protected static function getOptions() {
