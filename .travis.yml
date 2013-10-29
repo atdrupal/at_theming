@@ -40,6 +40,7 @@ before_script:
  - echo '#####################'
  - drush si testing --db-url=mysql://root:@localhost/drupal --yes
  - echo 'atest_theming depends on features and views and. This command to auto download them all'
+ - drush dl boxes-7.x-2.x-dev
  - drush en --yes simpletest at_theming atest_theming
  - echo '#####################'
  - echo 'Setup caching directory for Twig'

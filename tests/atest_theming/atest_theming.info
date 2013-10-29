@@ -6,6 +6,7 @@ hidden = TRUE
 
 dependencies[] = views
 dependencies[] = features
+dependencies[] = boxes
 dependencies[] = boxes_admin_ui
 dependencies[] = text
 
