@@ -35,9 +35,21 @@ class At_Theming_TestCase extends DrupalWebTestCase {
     $output = at_theming_render_template($template_file);
     $this->assertTrue(strpos($output, '>1</a>') !== FALSE);
 
+    // Create a box, demo content for drupalBlock filter
+    $box['label'] = 'Demo drupalBox';
+    $box['title'] = 'Demo drupalBox';
+    $box['description'] = 'Box description';
+    $box['type'] = 'atest_theming_block_type';
+    $box['field_atest_theming_box_body']['und'][0]['value'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sodales, dui ac fermentum tincidunt, lorem nisl facilisis sem, ut consectetur urna velit vitae odio. Aliquam erat volutpat. Duis rutrum sollicitudin neque sed mattis. Proin risus elit, pretium eu tincidunt a, tempus quis tellus. Aliquam varius molestie varius. Aenean dictum metus quis orci faucibus ornare. Duis mattis pharetra tincidunt.';
+    $box = entity_create('box', $box);
+    $box->save();
+
     // with drupalBlock filter
     $template_file = '@atest_theming/twig/block.html.twig';
     $output = at_theming_render_template($template_file);
     $this->assertTrue(strpos($output, 'Powered by') !== FALSE);
+    $this->assertTrue(strpos($output, 'id="Powered by') === FALSE);
+    $this->assertTrue(strpos($output, 'id="block-boxes-demo-drupalbox') !== FALSE);
+    $this->assertTrue(strpos($output, 'Lorem ipsum dolor sit amet') !== FALSE);
   }
 }

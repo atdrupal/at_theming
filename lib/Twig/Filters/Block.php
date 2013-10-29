@@ -3,7 +3,13 @@
 namespace Drupal\at_theming\Twig\Filters;
 
 class Block {
-  public static function render($string) {
+  /**
+   * Callback for drupalBlock filter.
+   *
+   * @param  string  $string       %module:%delta
+   * @param  boolean $content_only TRUE to do not use block template.
+   */
+  public static function render($string, $content_only = FALSE) {
     $string = explode(':', $string);
     if (2 !== count($string)) {
       return '<!-- Wrong param -->';
@@ -18,10 +24,14 @@ class Block {
       return '<!-- Block not found -->';
     }
 
-    if ($block = block_load($module, $delta)) {
-      $output = _block_render_blocks(array($block));
-      $output = _block_get_renderable_array($output);
-      return drupal_render($output);
+    $output = _block_render_blocks(array($block));
+    $output = _block_get_renderable_array($output);
+
+    if ($content_only) {
+      $output = reset($output);
+      return $output['#markup'];
     }
+
+    return drupal_render($output);
   }
 }

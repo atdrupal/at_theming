@@ -6,6 +6,10 @@
 
 #}
 
-Drupal Block
+Block content only:
 
-{{ 'system:powered-by' | drupalBlock }}
+{{ 'system:powered-by' | drupalBlock(1) }}
+
+Block with full template
+
+{{ 'boxes:demo-drupalbox' | drupalBlock }}

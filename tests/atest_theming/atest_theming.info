@@ -4,7 +4,20 @@ core = 7.x
 
 dependencies[] = views
 dependencies[] = features
-dependencies[] = node
+dependencies[] = boxes_admin_ui
+dependencies[] = text
+
 dependencies[] = at_theming
 dependencies[] = at_base
 dependencies[] = at_autoload
+
+features[features_api][] = api:2
+features[box_type][] = atest_theming_block_type
+features[ctools][] = boxes_admin_ui:boxes:6
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[field_base][] = field_atest_theming_box_body
+features[field_instance][] = box-atest_theming_block_type-field_atest_theming_box_body
+features_exclude[dependencies][boxes_admin_ui] = boxes_admin_ui
+features_exclude[dependencies][ctools] = ctools
+features_exclude[dependencies][features] = features

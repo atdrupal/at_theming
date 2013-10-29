@@ -25,10 +25,10 @@ Twig template is supported
 
 - {{ 'view_name' | drupalView }}
 - {{ 'system:powered-by' | drupalBlock }}
+- {{ 'boxes:box-delta' | drupalBlock }}
 
 Planned features
 ==========
 
-- {{ 'box-delta' | drupalBox }}
 - {{ 'node/1' | url }}
 - url, l, auto_p, hide, format_date, filter_xss_admin, kpr, …
