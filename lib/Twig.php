@@ -25,6 +25,11 @@ class Twig {
       foreach (self::getFilters() as $filter) {
         $twig->addFilter($filter);
       }
+
+      // Functions
+      $twig->addFunction(new \Twig_SimpleFunction('element_children', function($v) {
+        return element_children($v);
+      }));
     }
 
     return $twig;
