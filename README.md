@@ -23,11 +23,14 @@ Twig template is supported
 
 #### Filters for Drupal:
 
-- {{ 'view_name' | drupalView }}
+- {{ 'view_name' | drupalView }} — if views.module is enabled
+- {{ node | kpr }} — if devel.module is enabled
 - {{ 'system:powered-by' | drupalBlock }}
 - {{ 'boxes:box-delta' | drupalBlock }}
 - {{ render_array | render }}
-- When devel.module enabled, kpr filter is available for debugging variables {{ node | kpr }}
+- {{ 'node/1' | url }}
+- {{ string | _filter_autop}}
+- {{ translate_me | t }}
 
 #### Functions
 
@@ -36,5 +39,4 @@ Twig template is supported
 Planned features
 ==========
 
-- {{ 'node/1' | url }}
-- url, l, auto_p, hide, format_date, filter_xss_admin, kpr, …
+- l, hide, format_date, filter_xss_admin, …

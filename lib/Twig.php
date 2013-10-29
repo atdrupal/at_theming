@@ -38,6 +38,9 @@ class Twig {
   protected static function getFilters() {
     $filters[] = new \Twig_SimpleFilter('drupalBlock', array('\Drupal\at_theming\Twig\Filters\Block', 'render'));
     $filters[] = new \Twig_SimpleFilter('render', 'render');
+    $filters[] = new \Twig_SimpleFilter('t', 't');
+    $filters[] = new \Twig_SimpleFilter('url', 'url');
+    $filters[] = new \Twig_SimpleFilter('_filter_autop', '_filter_autop');
 
     if (module_exists('views')) {
       $filters[] = new \Twig_SimpleFilter('drupalView', 'views_embed_view');
