@@ -1,6 +1,8 @@
 name = Test AT Theming
 description = Make sure at_theming module is working correctly.
+package = Testing
 core = 7.x
+hidden = TRUE
 
 dependencies[] = views
 dependencies[] = features
