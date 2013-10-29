@@ -26,6 +26,12 @@ Twig template is supported
 - {{ 'view_name' | drupalView }}
 - {{ 'system:powered-by' | drupalBlock }}
 - {{ 'boxes:box-delta' | drupalBlock }}
+- {{ render_array | render }}
+- When devel.module enabled, kpr filter is available for debugging variables {{ node | kpr }}
+
+#### Functions
+
+- {% for i in element_children(render_array) %} {{ render_array[i] | render }}  {% endfor %}
 
 Planned features
 ==========
