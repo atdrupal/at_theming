@@ -59,7 +59,7 @@ class Views {
    * @param  string $display_id Display ID of view
    * @return string             Path to template file
    */
-  protected function findTemplate($name, $display_id) {
+  protected static function findTemplate($name, $display_id) {
     $suggestions[] = path_to_theme() . "/templates/views/{$name}.{$display_id}.html.twig";
     $suggestions[] = path_to_theme() . "/templates/views/{$name}.html.twig";
     foreach ($suggestions as $path) {
