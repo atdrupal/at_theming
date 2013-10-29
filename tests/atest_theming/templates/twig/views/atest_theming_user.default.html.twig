@@ -1,0 +1,35 @@
+{#
+  Put this file to %theme/templates/views/, name it as
+  atest_theming_user.html.twig, or atest_theming_user.default.html.twig
+  it will be used to render atest_theming_user view
+
+  Available variables:
+    views, title, header, footer, exposed, rows, pager, feed_icon,
+    attachment_before, attachment_after, empty, more, …
+
+    @see http://goo.gl/vLNuq4#template_preprocess_views_view
+#}
+
+{{ header }}
+
+<hr />
+
+{% if view.result %}
+  {% for item in view.result %}
+
+    - {{ item.users_name }} #{{ item.uid }}
+    - since {{ item.users_created | date }}
+    - {{ item.users_mail }}
+
+  {% endfor %}
+{% endif %}
+
+<hr />
+
+Default rows:
+
+{{ rows }}
+
+<hr />
+
+{{ footer }}

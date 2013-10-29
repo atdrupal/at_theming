@@ -48,7 +48,7 @@ class Twig {
     $filters[] = new \Twig_SimpleFilter('_filter_autop', '_filter_autop');
 
     if (module_exists('views')) {
-      $filters[] = new \Twig_SimpleFilter('drupalView', 'views_embed_view');
+      $filters[] = new \Twig_SimpleFilter('drupalView', array('\Drupal\at_theming\Twig\Filters\Views', 'render'));
     }
 
     if (module_exists('devel')) {

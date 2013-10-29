@@ -24,6 +24,7 @@ Twig template is supported
 #### Filters for Drupal:
 
 - {{ 'view_name' | drupalView }} — if views.module is enabled
+  - %theme/templates/views/%view_name[.%display_id].html.twig will be used if it's available
 - {{ node | kpr }} — if devel.module is enabled
 - {{ 'system:powered-by' | drupalBlock }}
 - {{ 'boxes:box-delta' | drupalBlock }}
