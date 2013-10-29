@@ -38,6 +38,10 @@ class Twig {
       $filters[] = new \Twig_SimpleFilter('drupalView', 'views_embed_view');
     }
 
+    if (module_exists('devel')) {
+      $filters[] = new \Twig_SimpleFilter('kpr', 'kpr');
+    }
+
     return $filters;
   }
 
