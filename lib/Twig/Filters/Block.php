@@ -24,6 +24,9 @@ class Block {
       return '<!-- Block not found -->';
     }
 
+    // Make sure region is set
+    $block->region = -1;
+
     $output = _block_render_blocks(array($block));
     $output = _block_get_renderable_array($output);
 
