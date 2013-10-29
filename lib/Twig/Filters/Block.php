@@ -24,8 +24,11 @@ class Block {
       return '<!-- Block not found -->';
     }
 
-    // Make sure region is set
+    // Make sure properties are set
     $block->region = -1;
+    if (!isset($block->title)) {
+      $block->title = '';
+    }
 
     $output = _block_render_blocks(array($block));
     $output = _block_get_renderable_array($output);
