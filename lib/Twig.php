@@ -21,6 +21,11 @@ class Twig {
 
       $twig = new \Twig_Environment($loader, self::getOptions());
 
+      // Extension
+      if (at_debug()) {
+        $twig->addExtension(new \Twig_Extension_Debug());
+      }
+
       // Filters
       foreach (self::getFilters() as $filter) {
         $twig->addFilter($filter);
