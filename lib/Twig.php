@@ -20,6 +20,8 @@ class Twig {
       }
 
       $twig = new \Twig_Environment($loader, self::getOptions());
+
+      // Filters
       foreach (self::getFilters() as $filter) {
         $twig->addFilter($filter);
       }
@@ -30,6 +32,7 @@ class Twig {
 
   protected static function getFilters() {
     $filters[] = new \Twig_SimpleFilter('drupalBlock', array('\Drupal\at_theming\Twig\Filters\Block', 'render'));
+    $filters[] = new \Twig_SimpleFilter('render', 'render');
 
     if (module_exists('views')) {
       $filters[] = new \Twig_SimpleFilter('drupalView', 'views_embed_view');
