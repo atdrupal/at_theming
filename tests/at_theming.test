@@ -52,4 +52,9 @@ class At_Theming_TestCase extends DrupalWebTestCase {
     $this->assertTrue(strpos($output, 'id="block-boxes-demo-drupalbox') !== FALSE);
     $this->assertTrue(strpos($output, 'Lorem ipsum dolor sit amet') !== FALSE);
   }
+
+  public function testTwigStringLoader() {
+    $output = at_theming_render_string_template('Hello {{ name }}', array('name' => 'Andy Truong'));
+    $this->assertEqual('Hello Andy Truong', $output);
+  }
 }

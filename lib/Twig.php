@@ -10,16 +10,7 @@ class Twig {
       require_once DRUPAL_ROOT . '/sites/all/libraries/twig/lib/Twig/Autoloader.php';
       \Twig_Autoloader::register();
 
-      $loader = new \Twig_Loader_Filesystem(DRUPAL_ROOT);
-      // Add @module shortcuts
-      foreach (at_modules('at_theming') as $module_name) {
-        $dir = DRUPAL_ROOT . '/' . drupal_get_path('module', $module_name) . '/templates';
-        if (is_dir($dir)) {
-          $loader->addPath($dir, $module_name);
-        }
-      }
-
-      $twig = new \Twig_Environment($loader, self::getOptions());
+      $twig = new \Twig_Environment(NULL, self::getOptions());
 
       // Extension
       if (at_debug()) {
@@ -37,7 +28,26 @@ class Twig {
       }));
     }
 
+    $twig->setLoader(self::getFileLoader());
+
     return $twig;
+  }
+
+  protected static function getFileLoader() {
+    static $loader;
+
+    if (!$loader) {
+      $loader = new \Twig_Loader_Filesystem(DRUPAL_ROOT);
+      // Add @module shortcuts
+      foreach (at_modules('at_theming') as $module_name) {
+        $dir = DRUPAL_ROOT . '/' . drupal_get_path('module', $module_name) . '/templates';
+        if (is_dir($dir)) {
+          $loader->addPath($dir, $module_name);
+        }
+      }
+    }
+
+    return $loader;
   }
 
   protected static function getFilters() {
