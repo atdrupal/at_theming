@@ -2,6 +2,7 @@ name = AT Theming
 version = 7.x-1.0-dev
 description = Theming tools
 core = 7.x
+package = Andy Truong
 
 dependencies[] = at_base
 dependencies[] = at_autoload
