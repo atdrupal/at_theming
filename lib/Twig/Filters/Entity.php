@@ -15,7 +15,7 @@ class Entity {
       return '<!-- Wrong param -->';
     }
 
-    list($entity_type, $entity_id, $view_mode) = $string;
+    @list($entity_type, $entity_id, $view_mode) = $string;
     $entity = entity_load($entity_type, array($entity_id));
     $view_mode = !empty($view_mode) ? $view_mode : 'full';
 
