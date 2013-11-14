@@ -17,6 +17,10 @@ class Views {
       array_shift($args); // remove $display_id
     }
 
+    if (!function_exists('views_get_view')) {
+      throw new \Exception('Missing module: views');
+    }
+
     if (!$view = views_get_view($name)) {
       return '<!-- Views not found -->';
     }
