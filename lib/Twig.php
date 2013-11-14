@@ -52,6 +52,7 @@ class Twig {
 
   protected static function getFilters() {
     $filters[] = new \Twig_SimpleFilter('drupalBlock', array('\Drupal\at_theming\Twig\Filters\Block', 'render'));
+    $filters[] = new \Twig_SimpleFilter('drupalEntity', array('\Drupal\at_theming\Twig\Filters\Entity', 'render'));
     $filters[] = new \Twig_SimpleFilter('render', 'render');
     $filters[] = new \Twig_SimpleFilter('t', 't');
     $filters[] = new \Twig_SimpleFilter('url', 'url');
