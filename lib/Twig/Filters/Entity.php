@@ -25,14 +25,11 @@ class Entity {
 
     $entity = reset($entity);
 
-    return drupal_render(self::entityView($entity_type, array($entity), $view_mode));
-  }
+    if (!function_exists('entity_view')) {
+      throw new \Exception('Missing module: entity');
+    }
 
-  /**
-   * Render entity view
-   */
-  private static function entityView($entity_type, $entities, $view_mode = 'full', $langcode = NULL, $page = NULL) {
-    return entity_view($entity_type, $entities, $view_mode, $langcode, $page);
+    $output = entity_view($entity_type, array($entity), $view_mode);
+    return render($output);
   }
-
 }

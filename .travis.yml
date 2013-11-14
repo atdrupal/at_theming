@@ -27,6 +27,7 @@ before_script:
  - git clone https://github.com/andytruong/at_autoload.git --branch=7.x-1.x
  - git clone https://github.com/andytruong/at_config.git --branch=7.x-1.x
  - cd ../../..
+ - drush dl entity-7.x-1.2
  - echo '#####################'
  - echo 'Clone required libraries'
  - echo '#####################'
