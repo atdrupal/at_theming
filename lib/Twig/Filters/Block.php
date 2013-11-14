@@ -35,7 +35,7 @@ class Block {
 
     if ($content_only) {
       $output = reset($output);
-      return $output['#markup'];
+      return isset($output['#markup']) ? $output['#markup'] : render(reset($output));
     }
 
     return drupal_render($output);
