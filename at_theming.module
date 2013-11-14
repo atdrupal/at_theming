@@ -33,3 +33,17 @@ function at_theming_render_string_template($string, $variables = array(), $engin
   $twig->setLoader(new \Twig_Loader_String());
   return $twig->render($string, $variables);
 }
+
+/**
+ * Implements hook_block_info()
+ */
+function at_theming_block_info() {
+  return at_id(new \Drupal\at_theming\Hook\BlockInfo())->import();
+}
+
+/**
+ * Implements hook_block_view
+ */
+function at_theming_block_view($delta) {
+  return at_id(new \Drupal\at_theming\Hook\BlockView($delta))->view();
+}
