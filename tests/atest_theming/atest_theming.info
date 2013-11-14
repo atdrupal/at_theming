@@ -4,6 +4,7 @@ package = Testing
 core = 7.x
 hidden = TRUE
 
+dependencies[] = entity
 dependencies[] = views
 dependencies[] = features
 dependencies[] = boxes

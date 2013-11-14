@@ -27,7 +27,6 @@ before_script:
  - git clone https://github.com/andytruong/at_autoload.git --branch=7.x-1.x
  - git clone https://github.com/andytruong/at_config.git --branch=7.x-1.x
  - cd ../../..
- - drush dl entity-7.x-1.2
  - echo '#####################'
  - echo 'Clone required libraries'
  - echo '#####################'
@@ -35,6 +34,8 @@ before_script:
  - cd sites/all/libraries
  - composer require twig/twig:1.*
  - mv vendor/twig/twig ./
+ - composer require mustangostang/spyc:0.5.*
+ - mv vendor/mustangostang/spyc ./
  - rm -rf ./vendor composer.*
  - cd ../../..
  - echo '#####################'
@@ -43,6 +44,7 @@ before_script:
  - drush si testing --db-url=mysql://root:@localhost/drupal --yes
  - echo 'atest_theming depends on features and views and. This command to auto download them all'
  - drush dl boxes-7.x-2.x-dev
+ - drush dl entity-7.x-1.2
  - drush en --yes simpletest at_theming atest_theming
  - echo '#####################'
  - echo 'Setup caching directory for Twig'
