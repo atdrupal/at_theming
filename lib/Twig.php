@@ -51,26 +51,10 @@ class Twig {
   }
 
   protected static function getFilters() {
-    $filters[] = new \Twig_SimpleFilter('drupalBlock', array('\Drupal\at_theming\Twig\Filters\Block', 'render'));
-    $filters[] = new \Twig_SimpleFilter('drupalEntity', array('\Drupal\at_theming\Twig\Filters\Entity', 'render'));
-    $filters[] = new \Twig_SimpleFilter('render', 'render');
-    $filters[] = new \Twig_SimpleFilter('t', 't');
-    $filters[] = new \Twig_SimpleFilter('url', 'url');
-    $filters[] = new \Twig_SimpleFilter('_filter_autop', '_filter_autop');
-
-    if (module_exists('at_config')) {
-      $filters[] = new \Twig_SimpleFilter('at_config', 'at_config');
-    }
-
-    if (module_exists('views')) {
-      $filters[] = new \Twig_SimpleFilter('drupalView', array('\Drupal\at_theming\Twig\Filters\Views', 'render'));
-    }
-
-    if (module_exists('devel')) {
-      $filters[] = new \Twig_SimpleFilter('kpr', 'kpr');
-    }
-
-    return $filters;
+    $options['cache_id'] = 'at_theming:twig:filters';
+    return at_cache($options, function(){
+      return at_id(new \Drupal\at_theming\Twig\Filters())->get();
+    });
   }
 
   protected static function getOptions() {

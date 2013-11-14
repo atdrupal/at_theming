@@ -1,0 +1,16 @@
+twig_filters:
+  # Core
+  - [render, render]
+  - [t, t]
+  - [url, url]
+  - [_filter_autop, _filter_autop]
+
+  # Our family
+  - [drupalBlock, [\Drupal\at_theming\Twig\Filters\Block, render]]
+  - [drupalEntity, [\Drupal\at_theming\Twig\Filters\Entity, render]]
+  - [drupalView, [\Drupal\at_theming\Twig\Filters\Views, render]]
+  - [at_config, at_config]
+
+  # Contributed modules
+  - [kpr, kpr]
+  - [_filter_autop, _filter_autop]

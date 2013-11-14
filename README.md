@@ -38,6 +38,24 @@ Twig template is supported
 
 - {% for i in element_children(render_array) %} {{ render_array[i] | render }}  {% endfor %}
 
+#### Define custom twig filter:
+
+Add this line to your_module.info
+
+````
+dependencies[] = at_config
+dependencies[] = at_theming
+````
+
+Then, create new config file — your_module/config/twig_filters.yml
+
+````yaml
+# @see at_theming/config/twig_filters.yml for example
+twig_filters:
+  - [t, t]
+  - [drupalView, [\Drupal\at_theming\Twig\Filters\Views, render]]
+````
+
 Planned features
 ==========
 
