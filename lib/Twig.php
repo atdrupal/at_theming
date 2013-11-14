@@ -57,6 +57,10 @@ class Twig {
     $filters[] = new \Twig_SimpleFilter('url', 'url');
     $filters[] = new \Twig_SimpleFilter('_filter_autop', '_filter_autop');
 
+    if (module_exists('at_config')) {
+      $filters[] = new \Twig_SimpleFilter('at_config', 'at_config');
+    }
+
     if (module_exists('views')) {
       $filters[] = new \Twig_SimpleFilter('drupalView', array('\Drupal\at_theming\Twig\Filters\Views', 'render'));
     }
