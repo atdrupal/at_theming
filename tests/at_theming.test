@@ -57,4 +57,10 @@ class At_Theming_TestCase extends DrupalWebTestCase {
     $output = at_theming_render_string_template('Hello {{ name }}', array('name' => 'Andy Truong'));
     $this->assertEqual('Hello Andy Truong', $output);
   }
+
+  public function testTwigFilters() {
+    $output = at_theming_render_string_template("{{ 'user:1' | drupalEntity }}");
+    $this->assertTrue(strpos($output, 'History'));
+    $this->assertTrue(strpos($output, 'Member for'));
+  }
 }

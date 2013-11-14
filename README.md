@@ -32,6 +32,7 @@ Twig template is supported
 - {{ 'node/1' | url }}
 - {{ string | _filter_autop}}
 - {{ translate_me | t }}
+- {{ 'user:1' | drupalEntity }}
 
 #### Functions
 
