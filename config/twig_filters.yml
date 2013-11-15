@@ -9,7 +9,8 @@ twig_filters:
   - [drupalBlock, [\Drupal\at_theming\Twig\Filters\Block, render]]
   - [drupalEntity, [\Drupal\at_theming\Twig\Filters\Entity, render]]
   - [drupalView, [\Drupal\at_theming\Twig\Filters\Views, render]]
-  - [at_config, at_config]
+  # {{ "%module:%id:%key" }}
+  - [at_config, [\Drupal\at_theming\Twig\Filters\ATConfig, render]]
 
   # Contributed modules
   - [kpr, kpr]
