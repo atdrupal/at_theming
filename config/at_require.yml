@@ -1,0 +1,7 @@
+projects:
+  twig:
+    type: library
+    download:
+      type: git
+      url: https://github.com/fabpot/Twig.git
+      branch: v1.14.2
