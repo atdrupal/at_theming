@@ -16,7 +16,7 @@ class Config {
    * Get supported modules which have configuration for entity-templates
    */
   public function getModules() {
-    static $modules;
+    static $modules = array();
     if (!$modules) {
       foreach (at_modules('at_theming') as $module) {
         $file = DRUPAL_ROOT . '/' . drupal_get_path('module', $module) . '/config/entity_template.yml';

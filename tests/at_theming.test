@@ -23,7 +23,6 @@ class At_Theming_TestCase extends DrupalWebTestCase {
 
     $output = at_id(new \Drupal\at_theming\ViewRender($template_file, $view_name, $display_id))->render();
     $this->assertTrue(preg_match('/UID: \d+/', $output));
-    $this->verbose($output);
   }
 }
 
@@ -48,7 +47,8 @@ class At_Theming_Twig_TestCase extends DrupalWebTestCase {
     // with drupalView filter
     $template_file = '@atest_theming/twig/views/simple.html.twig';
     $output = at_theming_render_template($template_file);
-    $this->assertTrue(strpos($output, '>1</a>') !== FALSE);
+    $msg = 'See user #1 in the list';
+    $this->assertTrue(strpos($output, '>1</a>') !== FALSE, $msg);
 
     // Create a box, demo content for drupalBlock filter
     $box['label'] = 'Demo drupalBox';
@@ -62,20 +62,20 @@ class At_Theming_Twig_TestCase extends DrupalWebTestCase {
     // with drupalBlock filter
     $template_file = '@atest_theming/twig/block.html.twig';
     $output = at_theming_render_template($template_file);
-    $this->assertTrue(strpos($output, 'Powered by') !== FALSE);
-    $this->assertTrue(strpos($output, 'id="Powered by') === FALSE);
-    $this->assertTrue(strpos($output, 'id="block-boxes-demo-drupalbox') !== FALSE);
-    $this->assertTrue(strpos($output, 'Lorem ipsum dolor sit amet') !== FALSE);
+    $this->assertTrue(strpos($output, 'Powered by') !== FALSE, 'See Powred by block');
+    $this->assertTrue(strpos($output, 'id="Powered by') === FALSE, 'Block ID of "Powred by" is rendered');
+    $this->assertTrue(strpos($output, 'id="block-boxes-demo-drupalbox') !== FALSE, 'See box #block-boxes-demo-drupalbox');
+    $this->assertTrue(strpos($output, 'Lorem ipsum dolor sit amet') !== FALSE, 'Found Lorem message');
   }
 
   public function testTwigStringLoader() {
     $output = at_theming_render_string_template('Hello {{ name }}', array('name' => 'Andy Truong'));
-    $this->assertEqual('Hello Andy Truong', $output);
+    $this->assertEqual('Hello Andy Truong', $output, 'Template string is rendered correctly.');
   }
 
   public function testTwigFilters() {
     $output = at_theming_render_string_template("{{ 'user:1' | drupalEntity }}");
-    $this->assertTrue(strpos($output, 'History'));
-    $this->assertTrue(strpos($output, 'Member for'));
+    $this->assertTrue(strpos($output, 'History'), 'Found text "History"');
+    $this->assertTrue(strpos($output, 'Member for'), 'Found text: "Member for"');
   }
 }
