@@ -7,6 +7,9 @@ use \Drupal\at_base\Helper\RenderContent as ContentRender;
  * Wrapper function to support both phptemplate & twig template
  */
 function at_theming_render_template($template_file, $variables = array()) {
+  // Make sure variable is array
+  $variables = is_array($variables) ? $variables : array();
+
   return \Drupal\at_theming\Twig::render($template_file, $variables);
   // Not yet support phptemplate
   // $template_type = at_theming_detect_template_type($template_file);
