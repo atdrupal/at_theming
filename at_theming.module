@@ -67,12 +67,13 @@ function at_theming_entity_view_alter(&$build, $entity_type) {
     $data['variables']  = isset($data['variables']) ? $data['variables'] : array();
     $data['variables'] += array('build' => $build);
     $build = array(
-      '#build' => $build,
-      '#entity_type' => $build['entity_type'],
-      '#bundle' => $build['bundle'],
-      '#view_mode' => $build['view_mode'],
+      '#entity_type' => $build['#entity_type'],
+      '#bundle' => $build['#bundle'],
+      '#view_mode' => $build['#view_mode'],
       '#language' => 'language',
+      '#contextual_links ' => !empty($build['#contextual_links']) ? $build['#contextual_links'] : NULL,
       'at_theming' => at_id(new ContentRender($data))->render(),
+      '#build' => $build,
     );
   }
 }
