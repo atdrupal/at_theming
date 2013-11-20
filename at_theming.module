@@ -10,7 +10,11 @@ function at_theming_render_template($template_file, $variables = array()) {
   // Make sure variable is array
   $variables = is_array($variables) ? $variables : array();
 
+  // Replace tokens in path with real values
+  $template_file = at_id(new \Drupal\at_base\Helper\RealPath($template_file))->get();
+
   return \Drupal\at_theming\Twig::render($template_file, $variables);
+
   // Not yet support phptemplate
   // $template_type = at_theming_detect_template_type($template_file);
   // if ('phptemplate' === $template_type) {
