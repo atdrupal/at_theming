@@ -23,6 +23,21 @@ class At_Theming_TestCase extends DrupalWebTestCase {
 
     $output = at_id(new \Drupal\at_theming\ViewRender($template_file, $view_name, $display_id))->render();
     $this->assertTrue(preg_match('/UID: \d+/', $output));
+    $this->verbose($output);
+  }
+}
+
+class At_Theming_Twig_TestCase extends DrupalWebTestCase {
+  public function getInfo() {
+    return array(
+      'name' => 'AT Theming: Twig',
+      'description' => 'Make sure Twig features in at_theming module working correctly.',
+      'group' => 'AT Theming',
+    );
+  }
+
+  protected function setUp() {
+    parent::setUp('atest_theming');
   }
 
   public function testTwigRender() {
