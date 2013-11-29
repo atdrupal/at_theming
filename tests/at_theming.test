@@ -80,6 +80,42 @@ class At_Theming_Twig_TestCase extends DrupalWebTestCase {
   }
 }
 
+class At_Theming_Helper_RenderContent_TestCase extends DrupalWebTestCase {
+  public function getInfo() {
+    return array(
+      'name' => 'AT Theming: Helpers > RenderContent',
+      'description' => 'Make sure Helper classes are working correctly.',
+      'group' => 'AT Theming',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('atest_theming');
+  }
+
+  public function testRenderContent() {
+    // Simple string
+    $expected = 'Hello Andy Truong';
+    $actual = at_id(new \Drupal\at_base\Helper\RenderContent($expected))->render();
+    $this->assertEqual($expected, $actual);
+
+    // Template string
+    $data['template_string'] = 'Hello {{ name }}';
+    $data['variables']['name'] = 'Andy Truong';
+    $output = at_id(new \Drupal\at_base\Helper\RenderContent($data))->render();
+    $output = $output['#markup'];
+    $this->assertEqual($expected, $actual);
+
+    // Template
+    $data['template'] = '@atest_theming/templates/hello.twig';
+    $data['variables']['name'] = 'Andy Truong';
+    $output = at_id(new \Drupal\at_base\Helper\RenderContent($data))->render();
+    $output = $output['#markup'];
+    $assert = strpos($output, $actual) !== FALSE;
+    $this->assertTrue($assert, "Found <strong>{$expected}</strong> in result.");
+  }
+}
+
 class At_Theming_Base_Cache_Views_Warmer extends DrupalWebTestCase {
   public function getInfo() {
     return array(
