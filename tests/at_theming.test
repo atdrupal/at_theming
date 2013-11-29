@@ -137,7 +137,7 @@ class At_Theming_Base_Cache_Views_Warmer extends DrupalWebTestCase {
     $u1->name = 'IAmAndyTruong';
     user_save($u1);
     $output_2 = views_embed_view('atest_theming_user', 'default');
-    $this->assetTrue(FALSE !== strpos($output_2, $u1->name), "Found {$u1->name}");
+    $this->assertTrue(FALSE !== strpos($output_2, $u1->name), "Found {$u1->name}");
 
     $u1->name = $name;
     user_save($u1);
