@@ -45,7 +45,7 @@ class At_Theming_Twig_TestCase extends DrupalWebTestCase {
     $this->assertTrue(strpos($output, 'Hello Andy Truong') !== FALSE);
 
     // with drupalView filter
-    $template_file = '@atest_theming/twig/views/simple.html.twig';
+    $template_file = '@atest_theming/templates/twig/views/simple.html.twig';
     $output = at_theming_render_template($template_file);
     $msg = 'See user #1 in the list';
     $this->assertTrue(strpos($output, '>1</a>') !== FALSE, $msg);
