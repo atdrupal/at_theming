@@ -20,7 +20,6 @@ before_script:
  - ls -lah ../
  - mv ../andytruong/at_theming sites/all/modules/
  - echo '#####################'
- - echo '#####################'
  - echo 'Clone required libraries'
  - echo '#####################'
  - mkdir -p sites/all/libraries
