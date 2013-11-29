@@ -60,7 +60,7 @@ class At_Theming_Twig_TestCase extends DrupalWebTestCase {
     $box->save();
 
     // with drupalBlock filter
-    $template_file = '@atest_theming/twig/block.html.twig';
+    $template_file = '@atest_theming/templates/twig/block.html.twig';
     $output = at_theming_render_template($template_file);
     $this->assertTrue(strpos($output, 'Powered by') !== FALSE, 'See Powred by block');
     $this->assertTrue(strpos($output, 'id="Powered by') === FALSE, 'Block ID of "Powred by" is rendered');
