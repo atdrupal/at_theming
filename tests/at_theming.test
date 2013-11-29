@@ -79,3 +79,31 @@ class At_Theming_Twig_TestCase extends DrupalWebTestCase {
     $this->assertTrue(strpos($output, 'Member for'), 'Found text: "Member for"');
   }
 }
+
+class At_Theming_Base_Cache_Views_Warmer extends DrupalWebTestCase {
+  public function getInfo() {
+    return array(
+      'name' => 'AT Theming: AT Cache > Views-Cache warmer',
+      'description' => 'Try views-cache warmer of at_base.',
+      'group' => 'AT Theming',
+    );
+  }
+
+  protected function setUp() {
+    parent::setUp('atest_theming');
+  }
+
+  public function testViewsCacheWarming() {
+    $u1 = user_load(1);
+    $name = $u1->name;
+    $output_1 = views_embed_view('atest_theming_user', 'default');
+
+    $u1->name = 'IAmAndyTruong';
+    user_save($u1);
+    $output_2 = views_embed_view('atest_theming_user', 'default');
+    $this->assetTrue(FALSE !== strpos($output_2, $u1->name), "Found {$u1->name}");
+
+    $u1->name = $name;
+    user_save($u1);
+  }
+}

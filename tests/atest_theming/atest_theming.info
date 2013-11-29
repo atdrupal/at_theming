@@ -11,9 +11,10 @@ dependencies[] = boxes
 dependencies[] = boxes_admin_ui
 dependencies[] = text
 
-dependencies[] = at_theming
 dependencies[] = at_base
+dependencies[] = at_config
 dependencies[] = at_autoload
+dependencies[] = at_theming
 
 features[features_api][] = api:2
 features[box_type][] = atest_theming_block_type
