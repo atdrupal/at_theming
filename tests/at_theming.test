@@ -133,21 +133,19 @@ class At_Theming_Base_Cache_Views_Warmer extends DrupalWebTestCase {
    * @todo test me.
    */
   public function testViewsCacheWarming() {
-    // // Build the first time
-    // $u1 = user_load(1);
-    // $name = $u1->name;
-    // $output_1 = views_embed_view('atest_theming_user', 'default');
+    // Build the first time
+    $output = at_id(new Drupal\at_base\Helper\SubRequest('atest_theming/users'))->request();
+    $this->verbose($output);
 
-    // // Invoke entity save event
-    // $u1->name = 'IAmAndyTruong';
-    // user_save($u1);
+    // Invoke entity save event
+    $u = $this->drupalCreateUser();
 
-    // // Build the second time
-    // $output_2 = views_embed_view('atest_theming_user', 'default');
-    // $this->assertTrue(FALSE !== strpos($output_2, $u1->name), "Found {$u1->name}");
+    // Build the second time
+    $output = at_id(new Drupal\at_base\Helper\SubRequest('atest_theming/users'))->request();
+    $this->verbose($output);
 
-    // // Revert the username
-    // $u1->name = $name;
-    // user_save($u1);
+    $this->assertTrue(FALSE !== strpos($output, $u->name), "Found {$u->name}");
+
+    $this->verbose(print_r(views_get_view('atest_theming_user'), TRUE));
   }
 }
