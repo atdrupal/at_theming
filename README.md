@@ -18,7 +18,7 @@ Twig template is supported
 
 ````php
   $template_file = drupal_get_path('module', 'atest_theming') . '/templates/hello.twig';
-  echo at_theming_render_template($template_file, array('name' => 'Andy Truong'));
+  echo at_container('twig')->render($template_file, array('name' => 'Andy Truong'));
 ````
 
 #### Filters for Drupal:
