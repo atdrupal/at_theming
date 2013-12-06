@@ -2,11 +2,16 @@
 
 use \Drupal\at_theming\EntityTemplate\Config as EntityTemplateConfig;
 use \Drupal\at_base\Helper\RenderContent as ContentRender;
-
+use Drupal\at_theming\Breadcrumb\BreadCrumbProcess;
 /**
  * Implements hook_entity_view_alter()
  */
 function at_theming_entity_view_alter(&$build, $entity_type) {
+  // Create breadcrumb form yml config
+  if ($build['#view_mode'] === 'full') {
+    BreadCrumbProcess::startUp()->breadcrumb('entity', array('build' => $build, 'entity_type' => $entity_type));
+  }
+
   if ($data = at_id(new EntityTemplateConfig($entity_type, $build['#bundle'], $build['#view_mode']))->get()) {
     $data['variables']  = isset($data['variables']) ? $data['variables'] : array();
     $data['variables'] += array('build' => $build);
@@ -20,4 +25,14 @@ function at_theming_entity_view_alter(&$build, $entity_type) {
       '#build' => $build,
     );
   }
+}
+
+/**
+ * Implement hook_preprocess_page().
+ *
+ * @param type $vars
+ */
+function at_theming_preprocess_page(&$vars) {
+  // Create breadcrumb form yml config
+  BreadCrumbProcess::startUp()->breadcrumb('pages');
 }
