@@ -6,7 +6,7 @@ abstract class BreadcrumbBase {
 
   /**
    * Config id
-   * @var type 
+   * @var string 
    */
   private $breadcrumb_config_id = 'breadcrumbs';
 
@@ -23,11 +23,17 @@ abstract class BreadcrumbBase {
    * @var type 
    */
   protected $entity_data = FALSE;
+
   /*
    * Set true if want to automatically add a link to the homepage
    * Home > ...
    */
-  private $automatic_add_home_link = TRUE;
+  private $prefix_home = TRUE;
+
+  /**
+   * Provide tags for cache
+   */
+  private $cache_tags = array();
 
   /**
    * Token use in this module system
@@ -67,6 +73,17 @@ abstract class BreadcrumbBase {
   }
 
   /**
+   * Allow the plugin alter cache tags
+   */
+  public function setCacheTags(array $cache_tags) {
+    $this->cache_tags = $cache_tags;
+  }
+
+  private function getCacheTags() {
+    return $this->cache_tags;
+  }
+
+  /**
    * Read breadcrumb config of the module
    */
   protected function read_module_breadcrumb_Config() {
@@ -75,7 +92,7 @@ abstract class BreadcrumbBase {
     return at_cache(array(
       'ttl' => '+ 1day', // live 1 day
       'cache_id' => 'at_theming:BreadcrumbConfig',
-      'tags' => array('breadcrumbConfig'),
+      'tags' => array_merge(array('breadcrumbConfig'), $this->getCacheTags()),
       ), function() use ($breadcrumb_config_id, $module_use_breadcrumbs) {
         $config = array();
         foreach ($module_use_breadcrumbs as $module_use_breadcrumb) {
@@ -130,7 +147,7 @@ abstract class BreadcrumbBase {
    */
   public function setBreadcrumb(array $breadcrumbs) {
     $breadcrumb_render = array();
-    if ($this->automatic_add_home_link) {
+    if ($this->prefix_home) {
       $breadcrumb_render['home'] = l(t('Home'), '<front>');
     }
     // Buil the token to use

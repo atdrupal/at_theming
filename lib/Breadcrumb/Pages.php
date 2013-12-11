@@ -4,7 +4,7 @@ namespace Drupal\at_theming\Breadcrumb;
 
 use Drupal\at_theming\Breadcrumb\BreadcrumbBase;
 
-class pages extends BreadcrumbBase {
+class Pages extends BreadcrumbBase {
 
   /**
    * Storage configuration "path" match

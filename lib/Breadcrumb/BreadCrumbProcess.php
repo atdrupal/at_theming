@@ -4,20 +4,11 @@ namespace Drupal\at_theming\Breadcrumb;
 
 class BreadCrumbProcess {
 
-  private $plugin_obj_store = '';
-  private static $startUp_storage = NULL;
-
   /**
-   * Call BreadCrumbProcess()
-   * 
-   * @return Drupal\at_theming_study\Breadcrumb\BreadCrumbProcess
+   * Plugin be support
+   * @var type 
    */
-  public static function startUp() {
-    if (self::$startUp_storage === NULL) {
-      self::$startUp_storage = new BreadCrumbProcess;
-    }
-    return self::$startUp_storage;
-  }
+  private $plugin_obj_store = '';
 
   /**
    * Define support plugin
@@ -27,10 +18,12 @@ class BreadCrumbProcess {
    */
   private function get_plugin($plugin_name) {
     $name_space = __NAMESPACE__;
+    // array(plugin id => Class name)
     $plugins = array(
-      'entity' => 'entity',
-      'pages' => 'pages',
+      'entity' => 'Entity',
+      'pages' => 'Pages',
     );
+    $this->plugin_obj_store = $plugins;
     return isset($plugins[$plugin_name]) ? $name_space . '\\' . $plugins[$plugin_name] : FALSE;
   }
 
