@@ -43,3 +43,12 @@ pages:
 ````
 Can use tokens including token provides default.
 Or tokens insert in the working process. with hook_at_theming_breadcrumb_token_alter(&$token)
+
+Page body alter class
+===========
+Allows programmers to easily add a class to the body tag of the page
+````yaml
+# %my_module/config/at_theming.yml
+body_classes:
+  'path/path': ['class1', 'class2', 'class3']
+````
