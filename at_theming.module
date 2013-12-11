@@ -45,3 +45,12 @@ function at_theming_preprocess_page(&$vars) {
   // Create breadcrumb form yml config
   at_id(new BreadCrumbProcess())->breadcrumb('pages');
 }
+
+/**
+ * Implement hook_preprocess_html().
+ * 
+ * @param array $variables
+ */
+function at_theming_preprocess_html(&$variables) {
+  at_id(new \Drupal\at_theming\PageClassAlter\BodyTag($variables,current_path()));
+}
